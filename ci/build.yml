@@ -26,6 +26,7 @@ run:
     apt-get -y install mysql-server
 
     cd pal-tracker
+    service mysql start
     mysql -uroot < databases/tracker/create_databases.sql
     chmod +x gradlew
     ./gradlew -P version=$(cat ../version/number) testMigrate clean build || (service mysql stop && exit 1)
